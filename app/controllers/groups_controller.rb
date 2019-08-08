@@ -1,9 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update]
 
-  # def index
-  # end
-
   def new
     # group　新規作成画面
     @group = Group.new

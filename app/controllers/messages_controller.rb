@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @messages = @group.messages.includes(:user)
+    @group_menber = @group.users
   end
 
   def create
@@ -13,7 +14,7 @@ class MessagesController < ApplicationController
         format.html { redirect_to group_messages_path(params[:group_id]) }
         format.json
       end
-      # notice: 'あなたのエゴが送信されました！'
+      flash[:notice] = '送信されました！'
       
     else
       @messages = @group.messages.includes(:user)

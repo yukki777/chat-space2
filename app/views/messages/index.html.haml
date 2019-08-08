@@ -7,10 +7,11 @@
         .left-header__title
           = @group.name
         .left-header__members
-          %a{class: 'member'}
-          fuga
+          Menber :
+          - @group_menber.each do |menber|
+            = "#{menber[:name]}さん"
       .right-header
-        %a edit
+        = link_to "Edit", edit_group_path(@group), class: "edit-btn"
         
     .messages
       =render partial: 'message', collection: @messages

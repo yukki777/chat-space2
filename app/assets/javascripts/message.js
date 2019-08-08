@@ -19,13 +19,13 @@ $(function () {
                     </div>
                 </div>`
     return html;
-
   }
+
   $('#new_message').on('submit', function (e) {
     e.preventDefault();
     var formData = new FormData(this);
-    console.log(formData);
     var url = (window.location.href);
+    $('#message_content').reset();
     $.ajax({
       url: url,
       type: "POST",
@@ -37,19 +37,17 @@ $(function () {
       .done(function (data) {
         var html = buildHTML(data);
         $('.massages').append(html)
-        $('#message_content').val('')
-      })
-      .fail(function () {
-        alert('error');
-      })
-      .always(function () {
-        $('.submit-btn').prop('disabled', false);
-      })
-    function scrollBottom() {
-      var target = $('.message').last();
-      var position = target.offset().top + $('.messages').scrollTop();
-      $('.messages').animate({
-        scrollTop: position
-      }, 300, 'swing');
-    }
+          .fail(function () {
+            alert('error');
+          })
+          .always(function () {
+            $('.submit-btn').prop('disabled', false);
+          })
+        function scrollBottom() {
+          var target = $('.message').last();
+          var position = target.offset().top + $('.messages').scrollTop();
+          $('.messages').animate({
+            scrollTop: position
+          }, 300, 'swing');
+        })
   });
