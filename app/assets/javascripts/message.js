@@ -25,7 +25,6 @@ $(function () {
     e.preventDefault();
     var formData = new FormData(this);
     var url = (window.location.href);
-    $('#message_content').reset();
     $.ajax({
       url: url,
       type: "POST",
@@ -37,17 +36,19 @@ $(function () {
       .done(function (data) {
         var html = buildHTML(data);
         $('.massages').append(html)
-          .fail(function () {
-            alert('error');
-          })
-          .always(function () {
-            $('.submit-btn').prop('disabled', false);
-          })
-        function scrollBottom() {
-          var target = $('.message').last();
-          var position = target.offset().top + $('.messages').scrollTop();
-          $('.messages').animate({
-            scrollTop: position
-          }, 300, 'swing');
-        })
-  });
+        $('#message_content').reset();
+      })
+      .fail(function () {
+        alert('error');
+      })
+      .always(function () {
+        $('.submit-btn').prop('disabled', false);
+      })
+    function scrollBottom() {
+      var target = $('.message').last();
+      var position = target.offset().top + $('.messages').scrollTop();
+      $('.messages').animate({
+        scrollTop: position
+      }, 300, 'swing');
+    })
+});
