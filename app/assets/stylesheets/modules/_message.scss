@@ -1,9 +1,16 @@
 .chat {
-  width: calc(100% - 300px);
+  width: calc(100vw - 300px);
+  float: left;
   .header {
     box-sizing: border-box;
     height: 100px;
     padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px #eee;
+    overflow: scroll;
+    top: 0;
+
     .left-header {
       float: left;
       &__title {
@@ -30,6 +37,10 @@
       line-height: 40px;
       margin-top: 28px;
       padding: 0 20px;
+      .edit-btn {
+        text-decoration: none;
+        color: $light_blue;
+      }
     }
   }
 
@@ -37,7 +48,8 @@
     background-color: #FAFAFA;
     box-sizing: border-box;
     padding: 46px 40px 0;
-    height: calc(100% - 100px - 90px);
+    height: calc(100vh - 190px);
+    overflow: scroll;
     .message {
       .upper-message {
         display: flex;
@@ -67,7 +79,10 @@
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
-    padding: 20px 50px 20px 40px;
+    width: calc(100vw - 300px);
+    padding: 20px 50px 0px 40px;
+
+    
     &__message {
       border: none;
       float: left;

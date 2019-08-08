@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def edit
     # users/edit.html.hamlへ
+    # 編集画面に飛ぶだけ　インスタンス変数は不要　
+    # なぜならヴューにインスタンス変数が必要なデザインではないから
   end
 
   def update
