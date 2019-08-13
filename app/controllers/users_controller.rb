@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
 
-  def edit
-    # users/edit.html.hamlへ
-    # 編集画面に飛ぶだけ　インスタンス変数は不要　
-    # なぜならヴューにインスタンス変数が必要なデザインではないから
+  def index
+    @users = User.where("name LIKE(?)", "%#{params[:keyword]}%")
+    
+    respond_to do |format|
+      # format.html
+      format.json
+      # binding.pry
+    end
   end
 
   def update
@@ -23,6 +27,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email)
     # ログイン中ユーザー情報を含んだuserモデルインスタンスより取得
-
   end
 end

@@ -1,11 +1,11 @@
 $(function () {
-  function buildHTML(massage) {
+  function buildHTML(message) {
     var content = message.content ? `${message.content}` : "";
     var image = message.image ? `<img src= ${message.image}>` : "";
     var html = `<div class="message">
                     <div class="upper-message">
                       <div class="upper-message__user-name">
-                        ${massage.name}
+                        ${message.name}
                       </div>
                       <div class="upper-message__date">
                         ${message.created_at}
@@ -21,7 +21,15 @@ $(function () {
     return html;
   }
 
-  $('#new_message').on('submit', function (e) {
+  function scrollBottom() {
+    var target = $('.message').last();
+    var position = target.offset().top + $('.messages').scrollTop();
+    $('.messages').animate({
+      scrollTop: position
+    }, "300", "swing");
+  }
+
+  $('#message_content').on('submit', function (e) {
     e.preventDefault();
     var formData = new FormData(this);
     var url = (window.location.href);
@@ -35,6 +43,7 @@ $(function () {
     })
       .done(function (data) {
         var html = buildHTML(data);
+        scrollBottom();
         $('.massages').append(html)
         $('#message_content').reset();
       })
@@ -44,11 +53,5 @@ $(function () {
       .always(function () {
         $('.submit-btn').prop('disabled', false);
       })
-    function scrollBottom() {
-      var target = $('.message').last();
-      var position = target.offset().top + $('.messages').scrollTop();
-      $('.messages').animate({
-        scrollTop: position
-      }, 300, 'swing');
-    })
+  })
 });
