@@ -32,7 +32,6 @@ $(function () {
   $(function () {
     $("#user-search-field").on("keyup", function () {
       const input = $("#user-search-field").val();
-      console.log(input);
       $.ajax({
         type: 'GET',
         url: '/users',
@@ -61,7 +60,6 @@ $(function () {
   $(document).on("click", ".user-search-add", function () {
     var name = $(this).data("user-name");
     var user_id = $(this).data("user-id");
-    console.log(name);
     $(this).parent().remove();
     chatGroupUsers(name, user_id);
   });
