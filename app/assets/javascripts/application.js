@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 $(function () {
   setTimeout("$('.notification').fadeOut('slow')", 1000)
 })
+// var url = location.href;
+// document.write(url);
+// window.alert('100万園おめでとうございます！私が思うにあなたは最高に幸せな経験をした！');
