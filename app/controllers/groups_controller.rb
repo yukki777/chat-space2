@@ -6,7 +6,6 @@ class GroupsController < ApplicationController
     @group = Group.new
     # Groupクラスのいんスタンス作成　アソシエーション先　user　従属　とuser_group　支配
     @group.users << current_user
-    # binding.pry
   end
 
   def create

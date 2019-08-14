@@ -53,5 +53,5 @@ $(function () {
       .always(function () {
         $('.submit-btn').prop('disabled', false);
       })
-  })
+  });
 });
