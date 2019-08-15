@@ -52,6 +52,32 @@ $(function () {
       })
       .always(function () {
         $('.submit-btn').prop('disabled', false);
-      })
+      });
   });
+  var reloadMessages = function () {
+    var last_message_id = $('.upper-message').last().data('message-id')
+    var group_id = $('.left-header').data('group-id');
+    var groupMessage = '/groups/' + group_id + '/api/messages';
+    console.log(groupMessage);
+
+    $.ajax({
+      url: groupMessage,
+      type: 'get',
+      dataType: 'json',
+      data: { id: last_message_id }
+    })
+      .done(function (messages) {
+        // json.content message.content
+        // json.image message.image
+        // json.created_at message.created_at
+        // json.user_name message.user.name
+        // json.id message.id
+        console.log(messages);
+      })
+      .fail(function () {
+        console.log('error');
+      });
+  };
+
+  // setInterval(reloadMessages, 5000);
 });
