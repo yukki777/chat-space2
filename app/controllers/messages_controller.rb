@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @message = Message.new
     @messages = @group.messages.includes(:user)
     @group_menber = @group.users
+    # binding.pry
   end
 
   def create

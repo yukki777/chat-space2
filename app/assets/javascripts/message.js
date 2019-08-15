@@ -33,6 +33,7 @@ $(function () {
     e.preventDefault();
     var formData = new FormData(this);
     var url = (window.location.href);
+    console.log(url);
     $.ajax({
       url: url,
       type: "POST",
@@ -42,6 +43,7 @@ $(function () {
       contentType: false
     })
       .done(function (data) {
+        console.log(data);
         var html = buildHTML(data);
         scrollBottom();
         $('.massages').append(html)
