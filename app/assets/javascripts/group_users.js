@@ -32,12 +32,16 @@ $(function () {
   $(function () {
     $("#user-search-field").on("keyup", function () {
       const input = $("#user-search-field").val();
+      const group_users_ids = $("#chat-group-users").data('group-users-ids');
       $.ajax({
         type: 'GET',
         url: '/users',
         dataType: 'json',
         data: {
-          keyword: input
+          keyword: input,
+          group: {
+            group_users_ids: group_users_ids
+          }
         }
       })
         .done(function (users) {

@@ -3,7 +3,7 @@
   = render 'shared/side_bar'
   .chat
     .header
-      .left-header
+      .left-header(data-group-id = '#{@group.id}')
         .left-header__title
           = @group.name
         .left-header__members

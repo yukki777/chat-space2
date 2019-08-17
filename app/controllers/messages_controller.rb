@@ -5,7 +5,6 @@ class MessagesController < ApplicationController
     @message = Message.new
     @messages = @group.messages.includes(:user)
     @group_menber = @group.users
-    # binding.pry
   end
 
   def create
@@ -19,7 +18,7 @@ class MessagesController < ApplicationController
       
     else
       @messages = @group.messages.includes(:user)
-      flash.new[:alert] = 'メッセージを入力してください'
+      flash.now[:alert] = 'メッセージを入力してください'
       render :index
     end
   end
