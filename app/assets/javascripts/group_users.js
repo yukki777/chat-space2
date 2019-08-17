@@ -33,8 +33,6 @@ $(function () {
     $("#user-search-field").on("keyup", function () {
       const input = $("#user-search-field").val();
       const group_users_ids = $("#chat-group-users").data('group-users-ids');
-      console.log(group_users_ids);
-      console.log(input);
       $.ajax({
         type: 'GET',
         url: '/users',
