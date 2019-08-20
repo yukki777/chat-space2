@@ -77,4 +77,5 @@ gem 'mini_magick'
 # 画像のリサイズ
 # 上記二つを導入後　	
 # $ rails g uploader image
+gem 'fog-aws'
 
