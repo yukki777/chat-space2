@@ -1,14 +1,16 @@
-$(window).on('load', function () {
+$(function () {
   if (document.URL.match(/groups/) && document.URL.match(/messages/)) {
+    var message_main = $('.messages');
 
     $(function () {
       function buildHTML(message) {
         var content = message.content ? `${message.content}` : "";
-        var image = message.image ? `<img src= ${message.image}>` : "";
+        var image = message.image.url ? `<img src= ${message.image.url}>` : "";
+
         var html = `<div class="message" data-message-id="${message.id}">
                     <div class="upper-message">
                       <div class="upper-message__user-name">
-                        ${message.name}
+                        ${message.user_name}
                       </div>
                       <div class="upper-message__date">
                         ${message.created_at}
@@ -21,18 +23,15 @@ $(window).on('load', function () {
                       ${image}
                     </div>
                 </div>`
+        message_main.append(html);
         return html;
       }
 
       function scrollBottom() {
-        var target = $('.message').last();
-        var position = target.offset().top + $('.messages').scrollTop();
-        $('.messages').animate({
-          scrollTop: position
-        }, "300", "swing");
+        $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
       }
 
-      $('#message_content').on('submit', function (e) {
+      $('#new_message').on('submit', function (e) {
         e.preventDefault();
         var formData = new FormData(this);
         var url = (window.location.href);
@@ -45,15 +44,16 @@ $(window).on('load', function () {
           contentType: false
         })
           .done(function (data) {
-            var html = buildHTML(data);
-            $('.massages').append(html)
-            $('#message_content').reset();
+            buildHTML(data);
+            $('#new_message')[0].reset();
+            scrollBottom();
+
           })
           .fail(function () {
             alert('error');
           })
           .always(function () {
-            $('.submit-btn').prop('disabled', false);
+            $('.form__submit').prop('disabled', false);
           });
       });
       var reloadMessages = function () {
@@ -68,11 +68,10 @@ $(window).on('load', function () {
           data: { id: last_message_id }
         })
           .done(function (messages) {
-            console.log(messages);
             messages.forEach(function (message) {
-              var html = buildHTML(message);
-              $('.massages').append(html)
+              buildHTML(message);
               scrollBottom();
+
             });
           })
           .fail(function () {
