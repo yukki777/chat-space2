@@ -2,7 +2,7 @@ $(window).on('load', function () {
   if (document.URL.match(/groups/) && document.URL.match(/messages/)) {
 
     $(function () {
-      function buildHTML(message) {
+      function userResultHTML(message) {
         var content = message.content ? `${message.content}` : "";
         var image = message.image ? `<img src= ${message.image}>` : "";
         var html = `<div class="message" data-message-id="${message.id}">
