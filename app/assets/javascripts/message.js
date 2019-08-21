@@ -46,7 +46,7 @@ $(window).on('load', function () {
         })
           .done(function (data) {
             var html = buildHTML(data);
-            $('.massages').append(html)
+            $('.massages').append(html);
             $('#message_content').reset();
           })
           .fail(function () {
@@ -70,7 +70,7 @@ $(window).on('load', function () {
           .done(function (messages) {
             messages.forEach(function (message) {
               var html = buildHTML(message);
-              $('.massages').append(html)
+              $('.massages').append(html);
               scrollBottom();
             });
           })
