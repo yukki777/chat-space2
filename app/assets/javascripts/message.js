@@ -68,7 +68,6 @@ $(window).on('load', function () {
           data: { id: last_message_id }
         })
           .done(function (messages) {
-            console.log(messages);
             messages.forEach(function (message) {
               var html = buildHTML(message);
               $('.massages').append(html)
