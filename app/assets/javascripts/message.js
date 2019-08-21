@@ -46,7 +46,7 @@ $(window).on('load', function () {
         })
           .done(function (data) {
             var html = buildHTML(data);
-            $('.massages').append(html)
+            $('.massages').append(html);
             $('#message_content').reset();
           })
           .fail(function () {
@@ -68,10 +68,9 @@ $(window).on('load', function () {
           data: { id: last_message_id }
         })
           .done(function (messages) {
-            console.log(messages);
             messages.forEach(function (message) {
               var html = buildHTML(message);
-              $('.massages').append(html)
+              $('.massages').append(html);
               scrollBottom();
             });
           })
