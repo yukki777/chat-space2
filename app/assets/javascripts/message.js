@@ -2,6 +2,28 @@ $(window).on('load', function () {
   if (document.URL.match(/groups/) && document.URL.match(/messages/)) {
 
     $(function () {
+      function buildHTML(message) {
+        var content = message.content ? `${message.content}` : "";
+        var image = message.image ? `<img src= ${message.image}>` : "";
+        var html = `<div class="message" data-message-id="${message.id}">
+                    <div class="upper-message">
+                      <div class="upper-message__user-name">
+                        ${message.name}
+                      </div>
+                      <div class="upper-message__date">
+                        ${message.created_at}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                    <p class="lower-message__content">
+                      ${content}
+                    </p>
+                      ${image}
+                    </div>
+                </div>`
+        return html;
+      }
+
       function userResultHTML(message) {
         var content = message.content ? `${message.content}` : "";
         var image = message.image ? `<img src= ${message.image}>` : "";
@@ -70,7 +92,8 @@ $(window).on('load', function () {
           .done(function (messages) {
             console.log(messages);
             messages.forEach(function (message) {
-              userResultHTML(message);
+              var html = userResultHTML(message);
+              $('.massages').append(html)
               scrollBottom();
             });
           })
