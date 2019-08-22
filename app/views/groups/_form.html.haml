@@ -25,12 +25,14 @@
       %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
     .chat-group-form__field--right
       #chat-group-users
-      - group.users.each do |group_user|
-        .chat-group-user
-          %p.chat-group-user__name
-          %input{name: "group[user_ids][]", type: "hidden", value: group_user[:id]}/
-          = group_user[:name]
-          
+        - group.users.each do |group_user|
+          #chat_group_user_22.chat-group-user.clearfix.js-chat-member
+            %input{name: "group[user_ids][]", type: "hidden", value: group_user[:id]}/
+            %p.chat-group-user__name
+            = group_user[:name]
+            - unless group_user[:id] == current_user.id
+              .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right

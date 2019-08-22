@@ -50,7 +50,7 @@ $(function () {
 
           })
           .fail(function () {
-            alert('error');
+            alert('何もないのは『許可』しないィィィッ!!');
           })
           .always(function () {
             $('.form__submit').prop('disabled', false);
